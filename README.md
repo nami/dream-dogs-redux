@@ -9,4 +9,5 @@ Build your dream kennel of dogs! A site to try out React-Router. Built with:
 - Babel with es2015 and react presets
 - Bootstrap (css only, loaded from a cdn in `index.html`)
 
+Clone this repo and run ```yarn start```
 Loads of bugs but I'll fix it someday...
