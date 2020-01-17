@@ -18,6 +18,7 @@ import dogsReducer from './reducers/dogs_reducer';
 // containers
 import DogsIndex from './containers/dogs_index';
 import DogsNew from './containers/dogs_new';
+import DogsShow from './containers/dogs_show';
 
 const kennelName = prompt("What is your garage?") || `garage${Math.floor(10 + (Math.random() * 90))}`;
 
@@ -47,6 +48,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={DogsIndex} />
         <Route path="/dogs/new" exact component={DogsNew} /> 
+        <Route path="/dogs/:id" component={DogsShow} />
       </Switch>
     </Router>
   </Provider>,
