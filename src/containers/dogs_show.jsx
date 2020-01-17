@@ -3,12 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import Blurb from '../components/blurb';
-import { removeDog } from '../actions';
+import { removeDog, fetchPost } from '../actions';
 
 class DogsShow extends React.Component{
+  UNSAFE_componentWillMount() {
+     // able to refresh
+     if (!this.props.dog) {
+       this.props.fetchPost(this.props.match.params.id);
+     }
+   }
   
   handleClick = () => {
-  	this.props.removeDog(this.props.history, this.props.dog);
+  	this.props.removeDog(this.props.back, this.props.dog);
   }
 
   render(){
@@ -58,7 +64,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeDog }, dispatch);
+  return bindActionCreators({ removeDog, fetchPost }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DogsShow);

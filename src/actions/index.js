@@ -29,11 +29,21 @@ export function createPost(kennel, dog, callback) {
   };
 }
 
-export function removeDog(history, dog) {
+export function fetchPost(id) {
+  const promise = fetch(`${BASE_URL}/cars/${id}`)
+    .then(response => response.json());
+
+  return {
+    type: "FETCH_POST",
+    payload: promise
+  }
+}
+
+export function removeDog(back, dog) {
   const url = `${BASE_URL}/cars/${dog.id}`;
   fetch(url, { method: 'DELETE' })
     .then(r => r.json())
-    .then(() => history.push(""));
+    .then(() => back.push(""));
 
   return {
     type: 'REMOVE_DOG',
