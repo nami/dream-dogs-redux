@@ -12,13 +12,15 @@ import { createHistory as history } from 'history';
 import '../assets/stylesheets/application.scss';
 
 // reducers
+import { reducer as formReducer } from 'redux-form';
 import dogsReducer from './reducers/dogs_reducer';
 
 // containers
 import DogsIndex from './containers/dogs_index';
+import DogsNew from './containers/dogs_new';
 
-const kennelName = `garage${Math.floor(10 + (Math.random() * 90))}`;
-// prompt("What is your garage?") || `garage${Math.floor(10 + (Math.random() * 90))}`;
+const kennelName = prompt("What is your garage?") || `garage${Math.floor(10 + (Math.random() * 90))}`;
+
 const initialState = {
   kennel: kennelName,
   dogs: [
@@ -32,7 +34,8 @@ const initialState = {
 
 const reducers = combineReducers({
   kennel: (state = null, action) => state,
-  dogs: dogsReducer
+  dogs: dogsReducer,
+  form: formReducer
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);
@@ -43,6 +46,7 @@ ReactDOM.render(
     <Router history={history}>
       <Switch>
         <Route path="/" exact component={DogsIndex} />
+        <Route path="/dogs/new" exact component={DogsNew} /> 
       </Switch>
     </Router>
   </Provider>,

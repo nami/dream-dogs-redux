@@ -7,7 +7,7 @@ import { fetchDogs } from '../actions';
 import Blurb from '../components/blurb';
 
 class DogsIndex extends React.Component{
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.fetchDogs();
   }
 
@@ -25,6 +25,7 @@ class DogsIndex extends React.Component{
             </div>
             <div className="post-item">
               <h3>{ dog.brand } - { dog.model }</h3>
+              <p>{ dog.plate }</p>
               <p>{ dog.owner }</p>
             </div>
           </div>
