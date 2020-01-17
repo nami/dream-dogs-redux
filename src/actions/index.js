@@ -29,5 +29,16 @@ export function createPost(kennel, dog, callback) {
   };
 }
 
+export function removeDog(history, dog) {
+  const url = `${BASE_URL}/cars/${dog.id}`;
+  fetch(url, { method: 'DELETE' })
+    .then(r => r.json())
+    .then(() => history.push(""));
+
+  return {
+    type: 'REMOVE_DOG',
+    payload: dog
+  };
+}
 
 

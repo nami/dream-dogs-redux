@@ -3,8 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import Blurb from '../components/blurb';
+import { removeDog } from '../actions';
 
 class DogsShow extends React.Component{
+  
+  handleClick = () => {
+  	this.props.removeDog(this.props.history, this.props.dog);
+  }
+
   render(){
   	if (!this.props.dog) {
   	  <div className="dogs-index">
@@ -32,6 +38,9 @@ class DogsShow extends React.Component{
 		      <p>{ this.props.dog.plate }</p>
 		      <p>{ this.props.dog.owner }</p>
 		    </div>
+		    <button className="delete float-right" onClick={this.handleClick}>
+		      <i className="fa fa-trash-o" aria-hidden="true"></i>
+		    </button>
 		  </div>
 		  <button className="btn btn-success index-btn"><Link to="/">BACK</Link></button>
 		</div>
@@ -48,4 +57,8 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(DogsShow);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeDog }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DogsShow);
